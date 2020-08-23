@@ -64,6 +64,7 @@ def main():
     """Main function"""
     if not is_admin():
         logging.critical("This program needs to be run as administrator for raw socket privileges")
+        print("This program needs to be run as administrator for raw socket privileges")
         sys.exit(1)
 
     parser = argparse.ArgumentParser()
@@ -83,7 +84,7 @@ def main():
         raise ValueError('Invalid log level')
     logging.basicConfig(level=numeric_level)
     config = read_config(args.config_file)
-    logging.debug("Config: %s" % config)
+    logging.debug(config)
     # The important part.
     while True:
         for i in range(1, len(config)):
