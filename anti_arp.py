@@ -4,6 +4,7 @@
 
 import argparse
 import ctypes
+from gooey import Gooey
 import logging
 import os
 from signal import SIGINT, signal
@@ -60,6 +61,7 @@ def send_packets(router_ip, client_ip, router_mac, client_mac):
     send(arpspoofed)
 
 
+@Gooey
 def main():
     """Main function"""
     if not is_admin():
