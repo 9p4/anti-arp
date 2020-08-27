@@ -2,8 +2,7 @@ import gooey
 gooey_root = os.path.dirname(gooey.__file__)
 gooey_languages = Tree(os.path.join(gooey_root, 'languages'), prefix = 'gooey/languages')
 gooey_images = Tree(os.path.join(gooey_root, 'images'), prefix = 'gooey/images')
-a = Analysis(['REPLACE_ME.py'],
-             pathex=['c:\\Python27\\Scripts'],
+a = Analysis(['anti_arp.py'],
              hiddenimports=[],
              hookspath=None,
              runtime_hooks=None,
@@ -20,7 +19,7 @@ exe = EXE(pyz,
           options,
           gooey_languages, # Add them in to collected files
           gooey_images, # Same here.
-          name='REPLACE_ME',
+          name='Anti-Arp',
           debug=False,
           strip=None,
           upx=True,
