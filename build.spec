@@ -17,8 +17,8 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           options,
-          gooey_languages, # Add them in to collected files
-          gooey_images, # Same here.
+          gooey_languages,
+          gooey_images,
           name='Anti-Arp',
           debug=False,
           strip=None,
