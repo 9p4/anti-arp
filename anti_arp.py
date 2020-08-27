@@ -126,5 +126,7 @@ def main():
 
 
 if __name__ == '__main__':
+    nonbuffered_stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
+    sys.stdout = nonbuffered_stdout
     signal(SIGINT, handler)
     main()
