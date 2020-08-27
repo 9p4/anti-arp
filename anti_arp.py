@@ -65,7 +65,6 @@ def send_packets(router_ip, client_ip, router_mac, client_mac, dry):
 
 @Gooey(
     program_name='Anti-Arp',
-    image_dir='images/',
     menu=[
         {'name': 'file', 'items': [{
             'type': 'AboutDialog',
@@ -113,13 +112,15 @@ def main():
         logging.critical("This program needs to be run as administrator for raw socket privileges")
         print("This program needs to be run as administrator for raw socket privileges")
         sys.exit(1)
-    numeric_level = min(args.verbose * 10, 50)
+    numeric_level = max((5 - args.verbose) * 10, 10)
+    print(numeric_level)
     if not isinstance(numeric_level, int):
         raise ValueError('Invalid log level')
     logging.basicConfig(level=numeric_level)
     config = read_config(args.config_file)
     logging.debug(config)
     # The important part.
+    logging.info("Sending packets...")
     while True:
         for i in range(1, len(config)):
             send_packets(config[0][0], config[i][0], config[0][1], config[i][1], args.dry)
