@@ -13,8 +13,12 @@ Undos arp spoofing from popular parental controls devices
 ## Sample config file
 ```
 192.168.1.1 52:54:00:11:68:c1
-192.168.2.10 52:54:00:b7:d7:a5
+192.168.1.2 52:54:00:b7:d7:a5
 ```
+
+### Want to not use the GUI?
+
+Add `--ignore-gooey` in the program params!
 
 ## Quickstart (WIP)
 
