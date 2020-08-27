@@ -63,7 +63,24 @@ def send_packets(router_ip, client_ip, router_mac, client_mac, dry):
     logging.debug(arpspoofed)
 
 
-@Gooey
+@Gooey(
+    program_name='Anti-Arp',
+    image_dir='images/',
+    menu=[
+        {'name': 'file', 'items': [{
+            'type': 'AboutDialog',
+            'menuTitle': 'About',
+            'name': 'Anti-Arp',
+            'description': 'Sends out ARP packets faster than others can make \'em',
+            'version': '0.0.1',
+            'copyright': '2020',
+            'website': 'https://github.com/sambhavsaggi/anti-arp',
+            'developer': 'https://github.com/sambhavsaggi',
+            'license': 'MIT'
+        }]
+    }]
+)
+
 def main():
     """Main function"""
 

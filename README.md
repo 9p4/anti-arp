@@ -29,4 +29,6 @@ Requirements: Admin privileges on MacOS (pretty much any version from the past e
 1. Activate the virtual environment with `source venv/bin/activate`
 1. Install Python requirements with `pip3 install -r requirements.txt`. You have to know where the file is, probably in your downloads folder.
 1. Create a config file as outlined above.
-1. Run the program with `sudo python3 anti_arp.py config.txt`. You'll need to type in the password.
+1. Run the program with `sudo venv/bin/python3 anti_arp.py`. You'll need to type in the password.
+1. Open the config file in the GUI
+1. Press "start"
