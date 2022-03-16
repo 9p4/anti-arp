@@ -1,6 +1,6 @@
-# anti-arp
+# Anti ARP
 
-Undos arp spoofing from popular parental controls devices
+Undos ARP spoofing from popular parental controls devices
 
 ## HOWTO:
 
@@ -28,7 +28,7 @@ Requirements: Admin privileges on MacOS (pretty much any version from the past e
 
 1. Install Homebrew [here](https://brew.sh/). If you don't want to use Homebew, download Python3 from [here](https://www.python.org/downloads/mac-osx/) and skip the next step.
 1. Install Python 3 with `brew install python3`.
-1. Download this repo by downloading the zip. Click [here](https://github.com/sambhavsaggi/anti-arp/releases), click assets, and download the one that says "Source code (zip)".
+1. Download this repo by downloading the zip. Click [here](https://github.com/9p4/anti-arp/releases), click assets, and download the one that says "Source code (zip)".
 1. Extract the folder to your Downloads folder.
 1. [The following instructions are in terminal] Create a virtual environment with `cd Downloads; python3 -m venv venv`.
 1. Activate the virtual environment with `source venv/bin/activate`.
@@ -44,7 +44,7 @@ Requirements: Admin privileges on MacOS (pretty much any version from the past e
 Requirements: Admin privileges on Windows (heck, even XP should work)
 
 1. Download and install Python 3 from [here](https://www.python.org/downloads/windows/).
-1. Download the exe from the "releases" tab [here](https://github.com/sambhavsaggi/anti-arp/releases).
+1. Download the exe from the "releases" tab [here](https://github.com/9p4/anti-arp/releases).
 1. Create the config file with Notepad. Read the HOWTO section to learn how to make a config file.
 1. Right-click the exe and run as administrator. You can trust me, look at the code if you aren't sure.
 1. Open the config file in the GUI.

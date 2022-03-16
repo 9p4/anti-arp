@@ -73,8 +73,8 @@ def send_packets(router_ip, client_ip, router_mac, client_mac, dry):
             'description': 'Sends out ARP packets faster than others can make \'em',
             'version': '0.0.1',
             'copyright': '2020',
-            'website': 'https://github.com/sambhavsaggi/anti-arp',
-            'developer': 'https://github.com/sambhavsaggi',
+            'website': 'https://github.com/9p4/anti-arp',
+            'developer': 'https://github.com/9p4',
             'license': 'MIT'
         }]
     }]
