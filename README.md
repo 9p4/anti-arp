@@ -43,7 +43,6 @@ Requirements: Admin privileges on MacOS (pretty much any version from the past e
 
 Requirements: Admin privileges on Windows (heck, even XP should work)
 
-1. Download and install Python 3 from [here](https://www.python.org/downloads/windows/).
 1. Download the exe from the "releases" tab [here](https://github.com/9p4/anti-arp/releases).
 1. Create the config file with Notepad. Read the HOWTO section to learn how to make a config file.
 1. Right-click the exe and run as administrator. You can trust me, look at the code if you aren't sure.
